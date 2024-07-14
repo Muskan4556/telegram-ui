@@ -15,6 +15,7 @@ export default {
         'menu-hover-bg': 'var(--menu-hover-bg)',
         'menu-hover-text': 'var(--menu-hover-text)',
         'menu-hover-text-border': 'var(--menu-hover-text-border)',
+        'item-hover': 'var(--item-hover)',
       },
     },
   },

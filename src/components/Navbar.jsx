@@ -1,13 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Sidebar from "./Sidebar";
 import { MdOutlineMenu } from "react-icons/md";
 import { IoIosSearch } from "react-icons/io";
-import { toggleTheme } from "../utils/themeSlice";
 import { HiArrowLeft } from "react-icons/hi";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { toggleSidebarVisibility } from "../utils/sideVisibility";
 
 const Navbar = () => {
+  const dispatch = useDispatch()
   const [sidebarVisibility, setSidebarVisibility] = useState(false);
   const [menuHover, setMenuHover] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -15,14 +16,19 @@ const Navbar = () => {
   // search handle searchSection
   const [search, setSearch] = useState(false);
   const [isMenuClicked, setIsMenuClicked] = useState(true);
-  const dispatch = useDispatch();
   const theme = useSelector((store) => store.theme.theme);
+  const sidebarVisibilityStore = useSelector(
+    (store) => store.sidebarVisibility.visibility
+  );
 
   const handleSidebar = () => {
     setSidebarVisibility((prev) => !prev);
     setIsMenuClicked(!isMenuClicked);
-    dispatch(toggleTheme());
+   
   };
+  useEffect(()=>{
+    dispatch(toggleSidebarVisibility())
+  },[sidebarVisibility])
 
   const handleSearch = () => {
     setIsFocused(true);
@@ -33,10 +39,15 @@ const Navbar = () => {
     setIsFocused(false);
     setIsAnimating(false);
   };
+  const handleClickOutside = (e) => {
+    if (!e.target.closest(".sidebar") && sidebarVisibility) {
+      setSidebarVisibility(false);
+    }
+  };
 
   return (
-    <div className={`${theme}-theme lg:w-[30%] w-full`}>
-      <div className="lg:bg-bg-color bg-mobile-bg-color">
+    <div className={`${theme}-theme lg:w-[30%] w-full  z-[100] `}>
+      <div className="lg:bg-bg-color bg-mobile-bg-color w-full">
         <div className="flex items-center  px-4 py-2 relative ">
           <div className="w-[20%] relative">
             {!search ? (
@@ -100,7 +111,6 @@ const Navbar = () => {
               </>
             )}
           </div>
-          {sidebarVisibility && <Sidebar />}
           <div
             tabIndex={0}
             className={`hidden lg:flex p-2 h-12 rounded-full bg-input-bg-color w-full border-2 ${
@@ -147,6 +157,13 @@ const Navbar = () => {
               onBlur={() => setIsFocused(false)}
             /> */}
         </div>
+        <AnimatePresence>{sidebarVisibility && <Sidebar />}</AnimatePresence>
+        {sidebarVisibility && (
+          <div
+            className="fixed top-16  left-0 lg:w-[30%] w-full  h-full bg-black lg:bg-opacity-0 bg-opacity-0 z-10"
+            onClick={handleClickOutside}
+          />
+        )}
       </div>
     </div>
   );

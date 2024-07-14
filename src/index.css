@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 html {
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
@@ -11,7 +9,7 @@ html {
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 :root {
@@ -20,7 +18,7 @@ body {
   --text-dark: #000000;
   --text-light: #ffffff;
   --input-bg-light: #f4f4f5;
-  --input-bg-dark: #2c2c2c;
+  --input-bg-dark: #181818;
 }
 
 .light-theme {
@@ -35,6 +33,7 @@ body {
   --menu-hover-bg: rgba(0, 0, 0, 0.8);
   --menu-hover-text: #b2b5b7;
   --menu-hover-text-border: none;
+  --item-hover: #f3f3f3;
 }
 
 .dark-theme {
@@ -48,5 +47,6 @@ body {
   --icon-color: #707579;
   --menu-hover-bg: rgba(0, 0, 0, 0.8);
   --menu-hover-text: #b2b5b7;
-  --menu-hover-text-border:1px solid white;
+  --menu-hover-text-border: 1px solid white;
+  --item-hover: #2f2f2f;
 }
