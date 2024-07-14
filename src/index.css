@@ -1,3 +1,52 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+html {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  /* overflow-x: hidden; */
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+:root {
+  --bg-light: #ffffff;
+  --bg-dark: #212121;
+  --text-dark: #000000;
+  --text-light: #ffffff;
+  --input-bg-light: #f4f4f5;
+  --input-bg-dark: #2c2c2c;
+}
+
+.light-theme {
+  --bg-color: var(--bg-light);
+  --mobile-bg-color: #527da3;
+  --text-color: var(--text-dark);
+  --input-bg-color: var(--input-bg-light);
+  --border-color: #3390ec;
+  --hover-bg: #f4f4f4;
+  --placeholder-color: #a2acb4;
+  --icon-color: #707579;
+  --menu-hover-bg: rgba(0, 0, 0, 0.8);
+  --menu-hover-text: #b2b5b7;
+  --menu-hover-text-border: none;
+}
+
+.dark-theme {
+  --bg-color: var(--bg-dark);
+  --mobile-bg-color: #222d3d;
+  --text-color: var(--text-light);
+  --input-bg-color: var(--input-bg-dark);
+  --border-color: #8774e1;
+  --hover-bg: #2b2b2b;
+  --placeholder-color: #a2acb4;
+  --icon-color: #707579;
+  --menu-hover-bg: rgba(0, 0, 0, 0.8);
+  --menu-hover-text: #b2b5b7;
+  --menu-hover-text-border:1px solid white;
+}
