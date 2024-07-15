@@ -19,6 +19,8 @@ export const bgLightMode = "https://w0.peakpx.com/wallpaper/220/854/HD-wallpaper
 
 export const bgDarkMode = "https://w0.peakpx.com/wallpaper/623/156/HD-wallpaper-whatsapp-abstract-abstract-digital-abstraction-abstracts-background-black-blue-digital-pattern-sparkle.jpg"
 
+export const logoUrl = "https://image.similarpng.com/very-thumbnail/2021/01/Telegram-icon-on-transparent-background-PNG.png"
+
 export const menuItems = [
   { Icon: CiBookmark, label: "Saved Messages" },
   { Icon: PiCircleDashedLight, label: "My Stories" },

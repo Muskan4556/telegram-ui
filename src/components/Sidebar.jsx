@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { toggleTheme } from "../utils/themeSlice";
+import { toggleDark, toggleTheme } from "../utils/themeSlice";
 import ToggleButton from "./ToggleComponent";
 import { motion } from "framer-motion";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -122,8 +122,9 @@ const Sidebar = () => {
             {item.isToggle && (
               <div className="flex justify-end w-full">
                 <ToggleButton
-                  setToggleEnable={() =>
+                  setToggleEnable={() =>{
                     item.label === "Dark Mode" && dispatch(toggleTheme())
+                  dispatch(toggleDark())}
                   }
                 />
               </div>

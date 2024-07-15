@@ -46,10 +46,10 @@ const Navbar = () => {
   };
 
   return (
-    <div className={`${theme}-theme lg:w-[30%] w-full  z-[100] `}>
+    <div className={`${theme}-theme  w-full  z-[100] `}>
       <div className="lg:bg-bg-color bg-mobile-bg-color w-full shadow-lg">
-        <div className="flex items-center  px-4 py-2 relative ">
-          <div className="w-[20%] relative">
+        <div className="flex items-center w-full px-4 py-2 relative">
+          <div className="w-[20%]  relative">
             {!search ? (
               <>
                 <motion.div
@@ -134,8 +134,8 @@ const Navbar = () => {
             />
           </div>
           <h4
-            className={`lg:hidden font-semibold ml-4 ${
-              theme && "text-white"
+            className={`lg:hidden font-semibold  ml-4  ${
+              theme && "text-white "
             } text-2xl `}
           >
             Telegram
