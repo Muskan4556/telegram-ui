@@ -17,9 +17,9 @@ const Navbar = () => {
   const [search, setSearch] = useState(false);
   const [isMenuClicked, setIsMenuClicked] = useState(true);
   const theme = useSelector((store) => store.theme.theme);
-  const sidebarVisibilityStore = useSelector(
-    (store) => store.sidebarVisibility.visibility
-  );
+  // const sidebarVisibilityStore = useSelector(
+  //   (store) => store.sidebarVisibility.visibility
+  // );
 
   const handleSidebar = () => {
     setSidebarVisibility((prev) => !prev);
@@ -47,7 +47,7 @@ const Navbar = () => {
 
   return (
     <div className={`${theme}-theme lg:w-[30%] w-full  z-[100] `}>
-      <div className="lg:bg-bg-color bg-mobile-bg-color w-full">
+      <div className="lg:bg-bg-color bg-mobile-bg-color w-full shadow-lg">
         <div className="flex items-center  px-4 py-2 relative ">
           <div className="w-[20%] relative">
             {!search ? (

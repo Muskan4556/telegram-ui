@@ -3,7 +3,7 @@ import RightContCard from "./RightContCard"
 
 const RightCont = () => {
   return (
-    <div>
+    <div className=" lg:w-[70%]">
       <NavbarRightCont/>
       <RightContCard/>
     </div>

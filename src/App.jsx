@@ -3,6 +3,8 @@ import appStore from "./utils/appStore";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Body from "./components/Body";
 import Navbar from "./components/Navbar";
+import LeftCont from "./components/LeftCont";
+import RightCont from "./components/RightCont";
 
 const appRouter = createBrowserRouter([
   {
@@ -13,6 +15,26 @@ const appRouter = createBrowserRouter([
         <Body />
       </>
     ),
+    children: [
+      {
+        path: "/",
+        element: (
+          <>
+            <LeftCont />
+            <RightCont />
+          </>
+        ),
+      },
+      {
+        path: "/:id",
+        element: (
+          <>
+            <LeftCont />
+            <RightCont />
+          </>
+        ),
+      },
+    ],
   },
 ]);
 

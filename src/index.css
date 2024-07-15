@@ -34,6 +34,10 @@ body {
   --menu-hover-text: #b2b5b7;
   --menu-hover-text-border: none;
   --item-hover: #f3f3f3;
+  --primaryColor: #000000;
+  --secondaryColor: #707579;
+  --text-selected: var(--bg-light);
+  --bgImg: url("https://w0.peakpx.com/wallpaper/220/854/HD-wallpaper-whatsapp-black-abstract-abstract-digital-abstraction-abstracts-background-digital-pattern-texture.jpg");
 }
 
 .dark-theme {
@@ -49,4 +53,20 @@ body {
   --menu-hover-text: #b2b5b7;
   --menu-hover-text-border: 1px solid white;
   --item-hover: #2f2f2f;
+  --primaryColor: #ffffff;
+  --secondaryColor: #aaaaaa;
+  --text-selected: var(--bg-dark);
+  --bgImg: url("https://w0.peakpx.com/wallpaper/623/156/HD-wallpaper-whatsapp-abstract-abstract-digital-abstraction-abstracts-background-black-blue-digital-pattern-sparkle.jpg");
+}
+
+
+@layer utilities {
+  .scrollbar-none::-webkit-scrollbar {
+    display: none; /* Hide the scrollbar in WebKit browsers */
+  }
+
+  .scrollbar-none {
+    -ms-overflow-style: none; /* Hide the scrollbar in Internet Explorer */
+    scrollbar-width: none; /* Hide the scrollbar in modern browsers */
+  }
 }

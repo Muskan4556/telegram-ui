@@ -3,6 +3,7 @@ import { toggleTheme } from "../utils/themeSlice";
 import ToggleButton from "./ToggleComponent";
 import { motion } from "framer-motion";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 import { menuItems, profileUrl } from "../utils/constant";
 import { BsMoonStarsFill } from "react-icons/bs";
 import { IoIosArrowDown } from "react-icons/io";
@@ -50,7 +51,7 @@ const Sidebar = () => {
       },
     },
   };
-  const handleDragEnd = (event, info) => {
+  const handleDragEnd = (e, info) => {
     if (info.offset.x < -50 / 2) {
       dispatch(toggleSidebarVisibility()); // Close sidebar if dragged sufficiently left
     }
@@ -81,7 +82,7 @@ const Sidebar = () => {
               <LazyLoadImage
                 src={profileUrl}
                 alt="profile-img"
-                // effect="blur"
+                effect="blur"
                 className="w-12 h-12  rounded-full text-white"
               />
               <div className="transform scale-x-[-1] ">

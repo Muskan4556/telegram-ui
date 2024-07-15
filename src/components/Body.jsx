@@ -3,10 +3,10 @@ import RightCont from "./RightCont";
 
 const Body = () => {
   return (
-    <>
+    <div className="flex">
       <LeftCont />
       <RightCont />
-    </>
+    </div>
   );
 };
 
