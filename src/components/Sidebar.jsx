@@ -7,14 +7,16 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 import { menuItems, profileUrl } from "../utils/constant";
 import { BsMoonStarsFill } from "react-icons/bs";
 import { IoIosArrowDown } from "react-icons/io";
+import { IoMdSunny } from "react-icons/io";
+import { useState } from "react";
 import { toggleSidebarVisibility } from "../utils/sideVisibility";
 
 const Sidebar = () => {
   const theme = useSelector((store) => store.theme.theme);
   const dispatch = useDispatch();
-  const sidebarVisibility = useSelector(
-    (store) => store.sidebarVisibility.visibility
-  );
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [animationPosition, setAnimationPosition] = useState({ x: 0, y: 0 });
+  const [animationDirection, setAnimationDirection] = useState("expand");
 
   const iconClasses = "h-5 w-5 font-bold";
   const sidebarVariants = {
@@ -51,6 +53,22 @@ const Sidebar = () => {
       },
     },
   };
+
+  const handleToggleTheme = (e) => {
+    const rect = e.target.getBoundingClientRect();
+    setAnimationPosition({
+      x: rect.left + rect.width / 2,
+      y: rect.top + rect.height / 2,
+    });
+
+    setAnimationDirection(theme === "light" ? "expand" : "shrink");
+    setIsAnimating(true);
+    dispatch(toggleTheme());
+    dispatch(toggleDark());
+
+    setTimeout(() => setIsAnimating(false), 1000);
+  };
+
   const handleDragEnd = (e, info) => {
     if (info.offset.x < -50 / 2) {
       dispatch(toggleSidebarVisibility()); // Close sidebar if dragged sufficiently left
@@ -78,18 +96,26 @@ const Sidebar = () => {
       >
         <div className="lg:hidden lg:mt-0 mb-4 bg-[#598fba] h-[22%] ">
           <div className="flex flex-col justify-center  mx-4 h-full  ">
-            <div className="flex mt-4  px-4 justify-between h-full items-center ">
+            <div className="flex mt-4  lg:px-4 px-1 justify-between h-full items-center ">
               <LazyLoadImage
                 src={profileUrl}
                 alt="profile-img"
                 effect="blur"
-                className="w-12 h-12  rounded-full text-white"
+                className="lg:w-12 lg:h-12 h-14 w-14 rounded-full text-white"
               />
-              <div className="transform scale-x-[-1] ">
-                {" "}
-                {/* This flips the icon horizontally */}
-                <BsMoonStarsFill className={`${iconClasses} `} />
-              </div>
+              {theme === "light" ? (
+                <motion.div className="transform scale-x-[-1] ">
+                  <BsMoonStarsFill
+                    className={`${iconClasses} cursor-pointer  `}
+                    onClick={handleToggleTheme}
+                  />
+                </motion.div>
+              ) : (
+                <IoMdSunny
+                  className={`${iconClasses} cursor-pointer`}
+                  onClick={handleToggleTheme}
+                />
+              )}
             </div>
             <div className="flex justify-between mb-2 pb-4  h-14">
               <div>
@@ -121,17 +147,36 @@ const Sidebar = () => {
             </div>
             {item.isToggle && (
               <div className="flex justify-end w-full">
-                <ToggleButton
-                  setToggleEnable={() =>{
-                    item.label === "Dark Mode" && dispatch(toggleTheme())
-                  dispatch(toggleDark())}
-                  }
-                />
+                <motion.div onClick={handleToggleTheme}>
+                  <ToggleButton />
+                </motion.div>
               </div>
             )}
           </motion.div>
         ))}
       </div>
+      {isAnimating && (
+        <motion.div
+          initial={{
+            scale: animationDirection === "expand" ? 0 : 20,
+            opacity: 1,
+            top: `${animationPosition.y}px`,
+            left: `${animationPosition.x}px`,
+          }}
+          animate={{
+            scale: animationDirection === "expand" ? 20 : 0,
+            opacity: 0,
+          }}
+          transition={{ duration: 1 }}
+          className="absolute bg-blue-500 rounded-full"
+          style={{
+            width: "100px",
+            height: "100px",
+            transform: "translate(-50%, -50%)",
+            zIndex: 10,
+          }}
+        />
+      )}
     </motion.div>
   );
 };

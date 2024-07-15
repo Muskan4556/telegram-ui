@@ -15,13 +15,13 @@ const LeftCont = ({ setIsMobileView }) => {
   const { chats, currentPage, totalPages, loading, error, setCurrentPage } =
     totalChatInfo;
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const handleChatSelected = (i, id) => {
     setShowIndex(i);
     navigate(`/${id}`);
     setIsMobileView(true);
-    dispatch(backHomeVisibility(false))
+    dispatch(backHomeVisibility(false));
   };
 
   const filterUniqueChats = (chats) => {
@@ -69,9 +69,7 @@ const LeftCont = ({ setIsMobileView }) => {
     <div className={`${theme}-theme w-full shadow-lg`}>
       <ul
         ref={chatListRef}
-        className="overflow-y-auto  bg-bg-color text-text-color scrollbar-none"
-      style={{ height: 'calc(100vh - 64px)', }}
-
+        className="overflow-y-auto  bg-bg-color text-text-color scrollbar-none lg:h-[calc(100vh-64px)] h-[90vh] "
       >
         {filteredChats.map((chat, i) => (
           <div
@@ -91,7 +89,7 @@ const LeftCont = ({ setIsMobileView }) => {
                 className="w-12 h-12 rounded-full"
               />
             </li>
-            <div className={`w-[80%]`}>
+            <div className={`w-[80%] relative`}>
               <li
                 className={`text-primaryColor font-semibold whitespace-nowrap overflow-hidden text-ellipsis ${
                   showIndex === i && "text-text-selected"
@@ -106,6 +104,7 @@ const LeftCont = ({ setIsMobileView }) => {
               >
                 Stay Ahead in Your Career with @go_careers_bold_bot! 🚀🚀
               </li>
+              <li className="absolute text-sm text-text-selected bg-border-color top-8 right-0 h-7 w-7 p-2 rounded-full flex justify-center items-center">{chat?.msg_count}</li>
             </div>
           </div>
         ))}

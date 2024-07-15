@@ -34,7 +34,6 @@ const NavbarRightCont = ({ setIsMobileView }) => {
             <LazyLoadImage
               src={logoUrl}
               alt="logo"
-              effect="blur"
               className="lg:w-14 lg:h-14 w-12 h-12 rounded-full "
             />
             <div className="flex flex-col ml-4 py-2">

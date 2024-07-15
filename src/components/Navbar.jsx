@@ -73,7 +73,7 @@ const Navbar = () => {
                 </motion.div>
                 {menuHover && isMenuClicked && (
                   <div
-                    className="absolute bg-menu-hover-bg text-menu-hover-text ml-8 text-xs whitespace-nowrap h-6 p-1 z-10 "
+                    className="hidden lg:block absolute bg-menu-hover-bg text-menu-hover-text ml-8 text-xs whitespace-nowrap h-6 p-1 z-10 "
                     style={{ border: "var(--menu-hover-text-border)" }}
                   >
                     Open Menu
@@ -102,7 +102,7 @@ const Navbar = () => {
                 </motion.div>
                 {menuHover && (
                   <div
-                    className="absolute bg-menu-hover-bg text-menu-hover-text ml-8 text-xs whitespace-nowrap h-6 p-1 z-10 "
+                    className=" lg:block hidden absolute bg-menu-hover-bg text-menu-hover-text ml-8 text-xs whitespace-nowrap h-6 p-1 z-10 "
                     style={{ border: "var(--menu-hover-text-border)" }}
                   >
                     Return to chat list
